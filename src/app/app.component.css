@@ -1,0 +1,21 @@
+* {
+  font-family: Lato;
+}
+
+pre {
+  font-family: monospace
+}
+
+
+button {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  background-color: purple;
+  border-radius: 0.5rem;
+}
+
+button:disabled {
+  background-color: rgb(139, 77, 139);
+  color: rgb(185, 179, 179)
+}

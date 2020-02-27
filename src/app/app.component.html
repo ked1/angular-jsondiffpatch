@@ -1,0 +1,49 @@
+<h1>Deterministic Mock Anonymizer</h1>
+<h3>Szenario</h3>
+<p>
+For testautomation especially for integration tests we need mock or at least stable data. This can be complex data from a production database. For sure the data (even if it is not test code) has to be anonymized before implementing the test. Otherwise the production data will be commited to the git repo with the test code (assertions).
+</p>
+<h4>
+  Challenge
+</h4>
+<p>
+If you want or have to refresh your test data, it is crucial to have a deterministic approach. Mr Miller must remain Mr Miller... otherwise you have to rewrite all of your test assertions.
+</p>
+<h3>Steps</h3>
+<ol>
+  <li>Original partner</li>
+  <li>Anonymize partner</li>
+  <li>Take diff</li>
+  <li>Change attribute of original partner</li>
+  <li>Anonymize second time using diff (patch)</li>
+  <li>Identify non-anonymized attributes</li>
+  <li>Anonymize non-anonymized attributes</li>
+</ol>
+<hr>
+
+<pre>{{ partner | json }}</pre>
+<hr>
+
+<button (click)="anonymize()">Anonymize</button>
+<pre>{{ partnerAno | json }}</pre>
+<hr>
+
+<button [disabled]="!partnerAno" (click)="diff()">Diff</button>
+<pre>{{ this.anonymizationDiffDbDictionary[partner.id] | json }}
+<hr>
+
+<button [disabled]="!this.anonymizationDiffDbDictionary[partner.id]" (click)="change()">Change Original</button>
+<pre>{{ partnerChanged | json }}
+<hr>
+
+<button [disabled]="!partnerChanged"(click)="patch()">Patch (anonymize deterministic)</button>
+<pre>{{ partnerAnoPatched | json }}
+<hr>
+
+<button [disabled]="!partnerAnoPatched" (click)="checkAnonymization()">Identify non-anonymized attributes</button>
+<pre>{{ anonymizationGapDiff | json }}
+<hr>
+
+<button [disabled]="!anonymizationGapDiff" (click)="anonymizeNonAnonymizedAttributes()">Anonymize non-anonymized attributes</button>
+<pre>{{ partnerAnonymized2 | json }}
+<hr>
