@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
     lastname: "Meyer",
     firstname: "Marco",
     children: [
-      { personId: 2, lastname: "Meyer", firstname: "Ladina" },
-      { personId: 3, lastname: "Meyer", firstname: "Curdin" }
+      { personId: 2, lastname: "Meyer", firstname: "Ladina", children: null },
+      { personId: 3, lastname: "Meyer", firstname: "Curdin", children: null }
     ]
   };
   partnerAno: Partner;
@@ -50,7 +50,8 @@ export class AppComponent implements OnInit {
     });
     this.partnerChanged.children.push({
       firstname: "Caroline",
-      lastname: "Meyer"
+      lastname: "Meyer",
+      children: null
     });
   }
 
